@@ -1,6 +1,6 @@
 float xBola, yBola, moveX, moveY, diam,raio;
-float xRaqEsq, yRaqEsq, xRaqInf, yRaqInf;
-float larguraRaqEsq, alturaRaqEsq, larguraRaqInf, alturaRaqInf;
+float xRaqEsq, yRaqEsq;
+float larguraRaqEsq, alturaRaqEsq;
 
 
 
@@ -24,13 +24,9 @@ void setup () {
   diam = 30; //diâmetro da bola
   raio = diam/2;
  
-  larguraRaqInf=200;
-  alturaRaqInf=50;
+ 
   larguraRaqEsq=50;
   alturaRaqEsq=200;
-  
-  xRaqInf = width/2; //onde começa coordenada x da raquete inferior
-  yRaqInf = height-alturaRaqInf/2; //onde começa coordenada y da raquete inferior
   
   xRaqEsq = larguraRaqEsq/2; //onde começa coordenada x da raquete esquerda
   yRaqEsq = height/2; //onde começa coordenada y da raquete esquerda
@@ -54,11 +50,11 @@ void draw () {
     moveX = -moveX;
   }
   
-    if (xBola+raio <= larguraRaqEsq && xBola > width) {
+    if (xBola+raio <= larguraRaqEsq && yBola >= yRaqEsq+alturaRaqEsq/2) {
     moveX = -moveX;
   }
   
-  if (yBola < 0 || yBola > height || xBola == xRaqInf) {
+  if (yBola < 0 || yBola > height) {
     moveY = -moveY;
   }
   
@@ -68,7 +64,7 @@ void draw () {
   //desenha bola sempre na posição atualizada
   circle (xBola, yBola, diam);
   
-  yRaqEsq=mouseY; xRaqInf=mouseX;
+  yRaqEsq=mouseY; 
   
   if (yRaqEsq<100) {
     yRaqEsq = 100;
@@ -76,20 +72,22 @@ void draw () {
   else if (yRaqEsq>900) {
     yRaqEsq = 900;
   }
-  
-  if (xRaqInf<100) {
-    xRaqInf = 100;
-  }
-  else if (xRaqInf>900) {
-    xRaqInf = 900;
-  }  
  
-  fill (200, 0, 0);
-  rect(xRaqInf, yRaqInf, larguraRaqInf, alturaRaqInf);
+
   fill (0,200,0);
   rect (xRaqEsq, yRaqEsq,larguraRaqEsq,alturaRaqEsq);
-  
+  }
 
-  
-    
-}
+
+
+//3 vidas por jogo
+//[x] Placar (contador de vidas)
+//[x] Mais objetos interativos na tela mudando com a fase
+//[x] conforme perde a vida, a cor muda e a dificuldade aumenta
+
+//[] Som
+//[] Raquete mudando de tamanho e/ou forma
+//[] dar “game over”
+
+//[] Fundo com cenário 
+//[] Bolinha com imagem
