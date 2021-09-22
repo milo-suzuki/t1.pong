@@ -1,0 +1,95 @@
+float xBola, yBola, moveX, moveY, diam,raio;
+float xRaqEsq, yRaqEsq, xRaqInf, yRaqInf;
+float larguraRaqEsq, alturaRaqEsq, larguraRaqInf, alturaRaqInf;
+
+
+
+void setup () {
+  size (1000, 1000);
+  background(0);
+  
+  
+  //sorteia valor aleatório para a coordenada x da bola entre 0 e largura da janela
+  xBola = random(width); 
+
+//sorteia valor aleatório para a coordenada y da bola entre 0 e altura da janela
+  yBola = random(height);
+
+//sorteia algum valor entre -10 e 10 para incrementar a posição y da bola, definindo a “velocidade” de x
+  moveX = random (-10, 10);
+
+//sorteia algum valor entre -10 e 10 para incrementar a posição y da bola, definindo a “velocidade” de y
+  moveY = random (-10, 10);
+
+  diam = 30; //diâmetro da bola
+  raio = diam/2;
+ 
+  larguraRaqInf=200;
+  alturaRaqInf=50;
+  larguraRaqEsq=50;
+  alturaRaqEsq=200;
+  
+  xRaqInf = width/2; //onde começa coordenada x da raquete inferior
+  yRaqInf = height-alturaRaqInf/2; //onde começa coordenada y da raquete inferior
+  
+  xRaqEsq = larguraRaqEsq/2; //onde começa coordenada x da raquete esquerda
+  yRaqEsq = height/2; //onde começa coordenada y da raquete esquerda
+  
+  rectMode (CENTER); //muda localização dos parâmetros da função rect()para centro do retângulo
+
+}
+
+void draw () {
+  background(0);
+  
+  
+  
+  //incrementa a posição x da bolinha com o valor sorteado em moveX
+  xBola = xBola + moveX; 
+
+//incrementa a posição y da bolinha com o valor sorteado em moveY
+  yBola = yBola + moveY;
+
+  if (xBola < 0 || xBola > width) {
+    moveX = -moveX;
+  }
+  
+    if (xBola+raio <= larguraRaqEsq && xBola > width) {
+    moveX = -moveX;
+  }
+  
+  if (yBola < 0 || yBola > height || xBola == xRaqInf) {
+    moveY = -moveY;
+  }
+  
+  //pinta bola de cinza claro
+  fill (200);
+  
+  //desenha bola sempre na posição atualizada
+  circle (xBola, yBola, diam);
+  
+  yRaqEsq=mouseY; xRaqInf=mouseX;
+  
+  if (yRaqEsq<100) {
+    yRaqEsq = 100;
+  }
+  else if (yRaqEsq>900) {
+    yRaqEsq = 900;
+  }
+  
+  if (xRaqInf<100) {
+    xRaqInf = 100;
+  }
+  else if (xRaqInf>900) {
+    xRaqInf = 900;
+  }  
+ 
+  fill (200, 0, 0);
+  rect(xRaqInf, yRaqInf, larguraRaqInf, alturaRaqInf);
+  fill (0,200,0);
+  rect (xRaqEsq, yRaqEsq,larguraRaqEsq,alturaRaqEsq);
+  
+
+  
+    
+}
