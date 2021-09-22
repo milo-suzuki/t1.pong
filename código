@@ -16,7 +16,7 @@ void setup () {
   yBola = random(height);
 
 //sorteia algum valor entre -10 e 10 para incrementar a posição y da bola, definindo a “velocidade” de x
-  moveX = random (-10, 10);
+  moveX = random (-20, -10);
 
 //sorteia algum valor entre -10 e 10 para incrementar a posição y da bola, definindo a “velocidade” de y
   moveY = random (-10, 10);
@@ -46,11 +46,11 @@ void draw () {
 //incrementa a posição y da bolinha com o valor sorteado em moveY
   yBola = yBola + moveY;
 
-  if (xBola < 0 || xBola > width) {
+  if (xBola > width) {
     moveX = -moveX;
   }
   
-    if (xBola+raio <= larguraRaqEsq && yBola >= yRaqEsq+alturaRaqEsq/2) {
+    if (xBola+raio <= larguraRaqEsq && yBola <= yRaqEsq+alturaRaqEsq/2 && yBola >= yRaqEsq-alturaRaqEsq/2) {
     moveX = -moveX;
   }
   
