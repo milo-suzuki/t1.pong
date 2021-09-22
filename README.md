@@ -3,7 +3,7 @@
 ##**Características pra implementar**
 
 **Contador de vidas (3 vidas)**
-  quando o xBola<0:
+    quando o xBola<0:
     perder uma vida
     aumentar a velocidade
     mudar a cor da bolinha
