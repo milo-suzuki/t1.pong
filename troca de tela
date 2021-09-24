@@ -1,0 +1,20 @@
+int tela;
+
+void setup () {
+  size (300, 300);
+  tela = 1;
+}
+
+void draw () {
+  //tela de título
+  if ( tela == 1 ) {
+    background (255,0,0);
+    if  (keyPressed == true && key == 'a') {
+      tela = 2;
+    }
+  }
+  // tela do jogo
+  else if ( tela == 2 ) {
+    background (0, 0, 255);
+  }
+}
